@@ -192,48 +192,162 @@ console.log("Avec destructuring de méthode getFullName() : " + getFullName(user
  */
  console.log("------ Arrow Function => ------");
 
- // CAS 1
- // Sans paramètres
- let test = function(){
-     return "Toto";
- } 
+//  // CAS 1
+//  // Sans paramètres
+//  let test = function(){
+//      return "Toto";
+//  } 
 
- // Equivalent à 
- test = () => {
-     // traitement
-     return "toto";
- }
+//  // Equivalent à 
+//  test = () => {
+//      // traitement
+//      return "toto";
+//  }
 
-// Simplification seulement si la fonction ne fait qu'un retour
-test = () => "Toto";
-//console.log(test());
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = () => "Toto";
+// //console.log(test());
 
-// CAS 2
-// Avec paramètres
- let test2 = function(Legume){
-    return Legume.nom;
-} 
+// // CAS 2
+// // Avec paramètres
+//  let test2 = function(Legume){
+//     return Legume.nom;
+// } 
 
-// Equivalent à 
-test = (Legume) => {
-    // traitement
-    return Legume.nom;
+// // Equivalent à 
+// test = (Legume) => {
+//     // traitement
+//     return Legume.nom;
+// }
+
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = (Legume) => Legume.nom;
+
+// // CAS 3
+// // Avec au moins deux paramètres
+// let test2 = function(firstname, lastname){
+//     return `${firstname} ${lastname}`
+// } 
+
+// // Equivalent à 
+// test = (firstname, lastname) => {
+//     // traitement
+//     return `${firstname} ${lastname}`;
+// }
+
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = (firstname, lastname) => `${firstname} ${lastname}`;
+
+/**
+
+ * rest operator
+
+ * 
+
+ * ...
+
+ */
+
+
+
+// Avec tableau de légumes
+
+//let carotte = legumes[0];
+
+let carotte = { ...legumes[0]};
+
+
+
+console.log(carotte);
+
+console.log(legumes[0]);
+
+console.table(legumes);
+
+
+
+carotte.prix = 8.99;
+
+
+
+console.log(carotte);
+
+console.log(legumes[0]);
+
+console.table(legumes);
+
+
+
+// Avec tableau numérique (destructuring)
+
+const tabNum2 = [1, 2, 3];
+
+console.table(tabNum2);
+
+
+
+// En ES6 (destructuring)
+
+const [e, ...f] = tabNum2;
+
+console.log(e);
+
+console.log(f);
+
+
+
+/**
+
+ * Les valeurs par defaut pour les paramètres d'une fonction
+
+ */
+
+
+
+console.log("------ Valeur par défaut ------");
+
+
+
+function AireCarre(nb = 10){
+
+  return nb * nb;
+
 }
 
-// Simplification seulement si la fonction ne fait qu'un retour
-test = (Legume) => Legume.nom;
 
-// CAS 3
-// Avec au moins deux paramètres
-let test2 = function(firstname, lastname){
-    return `${firstname} ${lastname}`
-} 
 
-// Equivalent à 
-test = (firstname, lastname) => {
-    // traitement
-    return `${firstname} ${lastname}`;
+console.log(`Aire du carré ${AireCarre(5)} cm²`);
+
+console.log(`Aire du carré ${AireCarre()} cm²`);
+
+
+
+/**
+
+ * Les classes
+
+ * L'ES6 a enfin introduit les classes
+
+ */
+
+
+class Personne{
+    firstname;
+    lastname;
+    
+    constructor(Prenom, Nom){
+        this.firstname = Prenom;
+        this.lastname = Nom;
+    }
+
+    getFullName(){
+        return `${this.firstname} ${this.lastname}`;
+    }
 }
+let personne1 = new Personne("George", "Clinton"); // fais appel au constructeur
+console.log(personne1.firstname);
+console.log(personne1.getFullName());
 
-// Simplification seulement si la fonction ne fait qu'un retour
-test = (firstname, lastname) => `${firstname} ${lastname}`;
+
+
+
