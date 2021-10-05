@@ -101,6 +101,22 @@ console.table(tableTMP);
 tableTMP = deuxiemeTableau.reverse();
 console.table(tableTMP);
 
+/**
+ * Split()
+ */
+
+let maChaine:string = "kayak";
+let tmp:any = maChaine.split('').reverse().join('');
+
+console.log(tmp);
+
+/**
+ * ToString
+ */
+
+console.log(deuxiemeTableau.toString());
+
+
 
 
 

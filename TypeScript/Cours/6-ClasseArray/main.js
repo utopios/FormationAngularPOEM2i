@@ -75,3 +75,13 @@ console.table(tableTMP);
  */
 tableTMP = deuxiemeTableau.reverse();
 console.table(tableTMP);
+/**
+ * Split()
+ */
+var maChaine = "kayak";
+var tmp = maChaine.split('').reverse().join('');
+console.log(tmp);
+/**
+ * ToString
+ */
+console.log(deuxiemeTableau.toString());
