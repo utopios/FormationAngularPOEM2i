@@ -18,43 +18,44 @@ for (let prenom of NomTableau) {
 }
 
 /**
- * foreEach()
+ * forEach()
  */
 NomTableau.forEach((element) => console.log(element));
 
 /**
- * Concat
+ * Concat()
  */
 
-let deuxiemeTableau: any[] = ["5", "4", "2", "3", "1", "1"];
+let premierTableau: any[] = [10, 9, 8, 7, 2, 5];
+let deuxiemeTableau: any[] = [5, 4, 2, 3, 1, 1];
 console.log("Type : " + typeof (deuxiemeTableau));
-let AlphaNumeric = NomTableau.concat(deuxiemeTableau);
+let Numeric = premierTableau.concat(deuxiemeTableau);
 
-console.log(AlphaNumeric);
+console.log(Numeric);
 
 /**
  * indexOf()
  */
 
-let index = deuxiemeTableau.indexOf("4");
+let index = deuxiemeTableau.indexOf(4);
 console.log(index); // retourn l'index si trouvé, sinon retourne -1
 
 /**
  * lasindexOf()
  */
 
-let index2 = deuxiemeTableau.lastIndexOf("2");
+let index2 = deuxiemeTableau.lastIndexOf(2);
 console.log(index2); // retourn l'index si trouvé, sinon retourne -1
 
 /**
  * find(), filter()
  */
 
-// let result1 = deuxiemeTableau.find(function (valeur) {
-//     return valeur.includes("2");
-// });
+let result1 = deuxiemeTableau.find(function (valeur) {
+    return valeur.includes(2);
+});
 let result2 = deuxiemeTableau.filter(function (valeur) {
-    return valeur.includes("2");
+    return valeur.includes(2);
 });
 console.table(result2);
 //console.log(result1);
@@ -106,7 +107,7 @@ console.table(tableTMP);
  */
 
 let maChaine:string = "kayak";
-let tmp:any = maChaine.split('').reverse().join('');
+let tmp:string = maChaine.split('').reverse().join('');
 
 console.log(tmp);
 
