@@ -190,7 +190,11 @@ console.log("Avec destructuring de méthode getFullName() : " + getFullName(user
  * Pour ecrire les fonctions flechée, on utlise
  * un opérateur nomé fat Arrow =>
  */
+<<<<<<< HEAD
 console.log("------ Arrow Function => ------");
+=======
+ console.log("------ Arrow Function => ------");
+>>>>>>> 2d013cf9ff8132b6163fe13f4c025a0715744949
 
 //  // CAS 1
 //  // Sans paramètres
@@ -281,7 +285,14 @@ console.log("------ Valeur par défaut ------");
 function aireCarre(nb=10) {
     return nb * nb;
 }
+let personne1 = new Personne("George", "Clinton"); // fais appel au constructeur
+console.log(personne1.firstname);
+console.log(personne1.getFullName());
 
+
+
+
+<<<<<<< HEAD
 console.log("Aire du carré = "+aireCarre(5)+"cm²");
 console.log("Aire du carré = "+aireCarre()+"cm²");
 
@@ -332,3 +343,5 @@ console.log("------ Les classes en javascript ES6 ------");
 
  let cadre1 = new Cadre("Emmanuel","Macron","CEO");
  console.log(cadre1.display());
+=======
+>>>>>>> 2d013cf9ff8132b6163fe13f4c025a0715744949
