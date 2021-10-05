@@ -322,8 +322,8 @@ console.log("------ Les classes en javascript ES6 ------");
     
     job;
 
-    constructor(firstname, lastname, job="Cadre"){
-        super(firstname,lastname);
+    constructor(Prenom, Nom, job="Cadre"){
+        super(Prenom,Nom);
         this.job=job;        
     }   
 
