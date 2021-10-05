@@ -190,11 +190,7 @@ console.log("Avec destructuring de méthode getFullName() : " + getFullName(user
  * Pour ecrire les fonctions flechée, on utlise
  * un opérateur nomé fat Arrow =>
  */
-<<<<<<< HEAD
 console.log("------ Arrow Function => ------");
-=======
- console.log("------ Arrow Function => ------");
->>>>>>> 2d013cf9ff8132b6163fe13f4c025a0715744949
 
 //  // CAS 1
 //  // Sans paramètres
