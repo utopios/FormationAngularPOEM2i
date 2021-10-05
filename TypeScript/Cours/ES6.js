@@ -292,7 +292,6 @@ console.log(personne1.getFullName());
 
 
 
-<<<<<<< HEAD
 console.log("Aire du carré = "+aireCarre(5)+"cm²");
 console.log("Aire du carré = "+aireCarre()+"cm²");
 
@@ -343,5 +342,3 @@ console.log("------ Les classes en javascript ES6 ------");
 
  let cadre1 = new Cadre("Emmanuel","Macron","CEO");
  console.log(cadre1.display());
-=======
->>>>>>> 2d013cf9ff8132b6163fe13f4c025a0715744949
