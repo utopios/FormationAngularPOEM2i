@@ -14,8 +14,9 @@ function Affichage() {
         console.log("Super");
     }
     j = 0;
-    return true;
+    console.log("Salut!");
 }
+Affichage();
 // Const
 var VAL = 432;
 var personne = { nom: "Di Persio", prenom: "Anthony" };

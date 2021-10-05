@@ -13,14 +13,16 @@ for(i=0;i<5;i++){
 }
 console.log(`Apres la boucle, i = ${i}`);
 
-function Affichage(){
+function Affichage():void{
     let j:number = 10;
     if(true){
         console.log("Super");        
     }
-    j=0
-    return true;
+    j=0;
+    console.log("Salut!");
 }
+
+Affichage();
 
 
 // Const
