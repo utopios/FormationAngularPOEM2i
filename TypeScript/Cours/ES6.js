@@ -178,7 +178,7 @@ const user = {
 // console.log("Sans destructuring de méthode getFullName() : " + getFullName(user));
 
 // Sans destructuring
-function getFullName({firstname, lastname}) {
+function getFullName({ firstname, lastname }) {
     return `${firstname} ${lastname}`
 }
 
@@ -190,50 +190,145 @@ console.log("Avec destructuring de méthode getFullName() : " + getFullName(user
  * Pour ecrire les fonctions flechée, on utlise
  * un opérateur nomé fat Arrow =>
  */
- console.log("------ Arrow Function => ------");
+console.log("------ Arrow Function => ------");
 
- // CAS 1
- // Sans paramètres
- let test = function(){
-     return "Toto";
- } 
+//  // CAS 1
+//  // Sans paramètres
+//  let test = function(){
+//      return "Toto";
+//  } 
 
- // Equivalent à 
- test = () => {
-     // traitement
-     return "toto";
+//  // Equivalent à 
+//  test = () => {
+//      // traitement
+//      return "toto";
+//  }
+
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = () => "Toto";
+// //console.log(test());
+
+// // CAS 2
+// // Avec paramètres
+//  let test2 = function(Legume){
+//     return Legume.nom;
+// } 
+
+// // Equivalent à 
+// test = (Legume) => {
+//     // traitement
+//     return Legume.nom;
+// }
+
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = (Legume) => Legume.nom;
+
+// // CAS 3
+// // Avec au moins deux paramètres
+// let test2 = function(firstname, lastname){
+//     return `${firstname} ${lastname}`
+// } 
+
+// // Equivalent à 
+// test = (firstname, lastname) => {
+//     // traitement
+//     return `${firstname} ${lastname}`;
+// }
+
+// // Simplification seulement si la fonction ne fait qu'un retour
+// test = (firstname, lastname) => `${firstname} ${lastname}`;
+
+/**
+ * rest operator
+ * 
+ * ...
+ */
+
+// Avec tableau de légumes
+//let carotte =legumes[0];
+let carotte = { ...legumes[0] };
+
+console.log(carotte);
+console.log(legumes[0]);
+console.table(legumes);
+
+carotte.prix = 8.99;
+
+console.log(carotte);
+console.log(legumes[0]);
+console.table(legumes);
+
+// Autre exemple avec tableau numérique ( destructuring)
+// Avec les tableaux numérique
+const tabNum2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.table(tabNum2);
+
+// En ES6 grace au destructuring
+const [c, ...d] = tabNum2;
+console.log(c);
+console.log(d);
+//c=89;
+d[0] = 56;
+console.log(d);
+console.table(tabNum2);
+
+
+/**
+ * Les valeurs par defaut pour les paramètre d'une fonction
+ */
+console.log("------ Valeur par défaut ------");
+
+function aireCarre(nb=10) {
+    return nb * nb;
+}
+
+console.log("Aire du carré = "+aireCarre(5)+"cm²");
+console.log("Aire du carré = "+aireCarre()+"cm²");
+
+/**
+ *  Les classes
+ * 
+ * L'es6 à enfin introduit les classes
+ */
+ 
+console.log("------ Les classes en javascript ES6 ------");
+
+ class Personne {
+
+    firstname;
+    lastname;
+
+    constructor(firstname, lastname){
+        this.firstname=firstname;
+        this.lastname=lastname
+    }   
+
+    getFullName() {
+        return `${this.firstname} ${this.lastname}`;
+    }
  }
 
-// Simplification seulement si la fonction ne fait qu'un retour
-test = () => "Toto";
-//console.log(test());
+ let p1 = new Personne("George","Clinton");
+ console.log(p1.firstname);
+ console.log(p1.getFullName());
 
-// CAS 2
-// Avec paramètres
- let test2 = function(Legume){
-    return Legume.nom;
-} 
+ class Cadre extends Personne{
+    
+    job;
 
-// Equivalent à 
-test = (Legume) => {
-    // traitement
-    return Legume.nom;
-}
+    constructor(firstname, lastname, job="Cadre"){
+        super(firstname,lastname);
+        this.job=job;        
+    }   
 
-// Simplification seulement si la fonction ne fait qu'un retour
-test = (Legume) => Legume.nom;
+    getJob(){
+        return `${this.job}`;
+    }
 
-// CAS 3
-// Avec au moins deux paramètres
-let test2 = function(firstname, lastname){
-    return `${firstname} ${lastname}`
-} 
+    display() {
+        return `${super.getFullName()} - ${this.getJob()}`;
+    }
+ }
 
-// Equivalent à 
-test = (firstname, lastname) => {
-    // traitement
-    return `${firstname} ${lastname}`;
-}
-
-// Simplification seulement si la fonction ne fait qu'un retour
-test = (firstname, lastname) => `${firstname} ${lastname}`;
+ let cadre1 = new Cadre("Emmanuel","Macron","CEO");
+ console.log(cadre1.display());
