@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BarNavComponent implements OnInit {
 
+  message:string="Salut à tous!";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.message = "Je modifie son contenu";
   }
+
+
 
 }
