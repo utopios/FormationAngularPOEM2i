@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-title"><b>Le nombre mystère</b></div>
+    <div id="ligne1">{{ligne1}}</div>
+    <div id="ligne2">{{ligne2}}</div>
+    <div class="saisie middle"><span>Nombre de coups : </span><span id="nbCoups">{{nbCoups}}</span>
+        <input [(ngModel)]="nbUser" type="number" name="nbUser" id="nbUser" (keydown)="onKeydown($event)">
+        <button class="bouton" name="Valider" id="valider" (click)="valider()" [disabled]="trouve">Valider</button>
+    </div>
+    <button class="bouton replay" (click)="start()">Rejouer</button>
+</div>

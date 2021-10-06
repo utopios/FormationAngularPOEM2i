@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accueil.component.css']
 })
 export class AccueilComponent implements OnInit {
-
+  nombre:any=0;
   constructor() { }
 
+  Montrer(){
+    console.log(this.nombre);
+  }
   ngOnInit(): void {
   }
 
