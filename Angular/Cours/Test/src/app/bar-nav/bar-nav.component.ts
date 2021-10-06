@@ -12,7 +12,7 @@ export class BarNavComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.message = "Je modifie son contenu";
+    this.message = "";
   }
 
 
