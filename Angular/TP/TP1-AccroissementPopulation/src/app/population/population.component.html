@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>{{title}}</h1>
+    <hr>
+    <div class="enonce">
+        <h3>Enoncé :</h3>
+        <p>
+            En <b>2015</b>, il été ressencé 96806 habitants.
+            Le taux d'accroissment de la population est de 0.89%.
+            Combiens faudra-t-il d'années avant d'atteindre une population de 120.000 habitants?
+        </p>
+    </div>
+    <div >
+        <h3>Calcul :</h3>
+        <button (click)="Calculer()">Calculer</button>
+        <ul [innerHTML]="result" class="calcul">
+
+        </ul>
+    </div>
+    <div *ngIf="nbAnnee>0" class="resultat">
+        <h3>Resultat : </h3>
+        <p>
+            Avec un taux d'accroissement de la population de <b>{{taux}}%</b>, en <b>{{date}}</b>,
+            il y aura <b>{{nbhabitant}} habitants</b> dans la ville de Tourcoing.<br>
+            Il aura fallu <b>{{nbAnnee}}</b> années.
+        </p>
+    </div>
+</div>
