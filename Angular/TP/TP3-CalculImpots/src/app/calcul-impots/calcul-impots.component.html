@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="card recupInfos">
+        <div class="row">
+            <div class="col-3">
+                <fieldset>
+                    <legend>Vos données personnelles</legend>
+                    <p>
+                        <label>Revenu Fiscal de référence : </label><input type="number" [(ngModel)]="revenus"
+                            name="revenus">
+                    </p>
+                    <p>
+                        <label>Nombre d'adulte(s) : </label><input type="number" [(ngModel)]="nbAdulte" name="nbAdulte">
+                    </p>
+                    <p>
+                        <label>Nombre d'enfant(s) : </label><input type="number" [(ngModel)]="nbEnfants"
+                            name="nbEnfants">
+                    </p>
+                    <button (click)="CalculerImpots()" class="btn btn-success"
+                        [disabled]="revenus == 0 || nbAdulte == 0">Calculer</button>
+                </fieldset>
+            </div>
+            <div class="col-9 colonne">
+                <div class="card result">
+                    <div *ngIf="revenuImposable>0" class="montant">
+                        <p>
+                            Le montant de l'impôt sur le revenu pour un foyer composé de <b>{{nbAdulte}}
+                                adulte(s)</b> et
+                            de <b>{{nbEnfants}} enfant(s)</b>, avec un revenu fiscal de <b>{{revenus}}€</b>
+                            s'élève à <b>{{montantImpot}}€</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
