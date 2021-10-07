@@ -1,0 +1,123 @@
+[Route("api/[controller]")]
+      public class MatieresApiController : Controller
+      {
+            private readonly FactoryContext _context;
+
+            public MatieresApiController(FactoryContext context)
+            {
+                  _context = context;
+            }
+            // GET: api/values
+            [HttpGet]
+            public async Task<List<Matiere>>  Get()
+            {
+                  return await _context.Matieres.ToListAsync();
+            }
+
+            // GET api/values/5
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Matiere>>  Get(int? id)
+            {
+                  if (id == null)
+                  {
+                        return NotFound();
+                  }
+                  return await _context.Matieres
+                        .FirstOrDefaultAsync(m =>  m.Id == id);
+            }
+
+            // POST api/values
+            [HttpPost]
+            public async Task<IActionResult>  Post([FromBody] MatiereViewModel matiereVM)
+            {
+                  if (ModelState.IsValid)
+                  {
+                        Matiere matiere = new Matiere
+                        {
+                              Titre = matiereVM.Nom,
+                              Duree = matiereVM.Duree
+                        };
+
+                        _context.Add(matiere);
+                        _context.SaveChanges();
+
+                        matiereVM.FormateursId.ForEach(fId =>
+                        {
+                              Competence competence = new Competence(fId, matiere.Id);
+
+                              _context.Add(competence);
+                        });
+
+
+                        await _context.SaveChangesAsync();
+                        return Ok(new { message = ""});
+                  }
+
+                  return Ok(new { message = "Error"});
+            }
+
+            // PUT api/values/5
+            [HttpPut("{id}")]
+            public async Task<IActionResult>  Put(int id, MatiereViewModel matiereVM)
+            {
+                  if (id != matiereVM.Id)
+                  {
+                        return NotFound();
+                  }
+
+                  if (ModelState.IsValid)
+                  {
+                        try
+                        {
+                              Matiere matiere = _context.Matieres.Find(matiereVM.Id);
+
+                              matiere.Titre = matiereVM.Nom;
+                              matiere.Duree = matiereVM.Duree;
+
+                              matiere.Competences.Clear();
+
+                              _context.Update(matiere);
+
+                              matiereVM.FormateursId.ForEach(fId =>
+                              {
+                                    Competence competence = new Competence(fId, matiere.Id);
+
+                                    _context.Add(competence);
+                              });
+
+                              await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateConcurrencyException)
+                        {
+                              if (!MatiereExists(matiereVM.Id))
+                              {
+                                    return NotFound();
+                              }
+                              else
+                              {
+                                    throw;
+                              }
+                        }
+                        return Ok(new { message = ""});
+                  }
+
+                  return Ok(new { message = "Erreur" });
+            }
+
+            // DELETE api/values/5
+            [HttpDelete("{id}")]
+            public async Task<IActionResult>  Delete(int id)
+            {
+                  var matiere = await _context.Matieres.FindAsync(id);
+                  _context.Matieres.Remove(matiere);
+                  await _context.SaveChangesAsync();
+                  return Ok(new { message = ""});
+            }
+
+            
+
+            private bool MatiereExists(int id)
+            {
+                  return _context.Matieres.Any(e =>  e.Id == id);
+            }
+      }

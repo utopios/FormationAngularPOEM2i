@@ -1,0 +1,109 @@
+[Route("api/[controller]")]
+      public class CursusApiController : Controller
+      {
+            private readonly FactoryContext _context;
+
+            public CursusApiController(FactoryContext context)
+            {
+                  _context = context;
+            }
+            // GET: api/values
+            [HttpGet]
+            public async Task<List<Cursus>>  Get()
+            {
+                  return await _context.Cursus.ToListAsync();
+            }
+
+            // GET api/values/5
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Cursus>>  Get(int? id)
+            {
+                  if (id == null)
+                  {
+                        return NotFound();
+                  }
+                  return await _context.Cursus
+                        .FirstOrDefaultAsync(m =>  m.Id == id);
+            }
+
+            // POST api/values
+            [HttpPost]
+            public async Task<IActionResult>  Post([FromBody] CursusViewModel cursusVM)
+            {
+                  if (ModelState.IsValid)
+                  {
+                        Cursus cursus = new Cursus()
+                        {
+                              Intitule = cursusVM.Intitule,
+                              GestionnaireId = cursusVM.GestionnaireId,
+                              DateDebut = cursusVM.DateDebut,
+                              DateFin = cursusVM.DateFin,
+                        };
+
+                        _context.Add(cursus);
+                        await _context.SaveChangesAsync();
+
+                        cursusVM.StagiairesId.ForEach(sId =>
+                        {
+                              _context.Stagiaires.Find(sId).CursusId = cursus.Id;
+                        });
+
+                        cursusVM.ModulesId.ForEach(sId =>
+                        {
+                              _context.Modules.Find(sId).CursusId = cursus.Id;
+                        });
+
+                        await _context.SaveChangesAsync();
+                        //Nimporte quel retour
+                        return Ok(new { message = "" });
+                  }
+                  return Ok(new { message = "Not Valid" });
+            }
+
+            // PUT api/values/5
+            [HttpPut("{id}")]
+            public async Task<IActionResult>  Put(int id, [Bind("Id,Intitule,DateDebut,DateFin")] Cursus cursus)
+            {
+                  if (id != cursus.Id)
+                  {
+                        return NotFound();
+                  }
+
+                  if (ModelState.IsValid)
+                  {
+                        try
+                        {
+                              _context.Update(cursus);
+                              await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateConcurrencyException)
+                        {
+                              if (!CursusExists(cursus.Id))
+                              {
+                                    return NotFound();
+                              }
+                              else
+                              {
+                                    throw;
+                              }
+                        }
+                        return Ok(new { message = ""});
+                  }
+                  return View(cursus);
+            }
+
+            // DELETE api/values/5
+            [HttpDelete("{id}")]
+            public async Task<IActionResult>  Delete(int id)
+            {
+                  var cursus = await _context.Cursus.FindAsync(id);
+                  _context.Cursus.Remove(cursus);
+                  await _context.SaveChangesAsync();
+                  return Ok();
+            }
+
+            private bool CursusExists(int id)
+            {
+                  return _context.Cursus.Any(e =>  e.Id == id);
+            }
+      }
